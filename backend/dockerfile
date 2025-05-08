@@ -1,0 +1,32 @@
+FROM php:8.2-fpm
+
+ARG UID=1000
+ARG GID=1000
+
+RUN groupadd -g ${GID} laravelgroup \
+    && useradd -u ${UID} -g laravelgroup -m laravel
+
+WORKDIR /var/www
+
+RUN apt-get update && apt-get install -y \
+    git unzip curl zip libzip-dev \
+    libonig-dev libxml2-dev libpq-dev libpng-dev \
+    libcurl4-openssl-dev libssl-dev libicu-dev zlib1g-dev \
+    && docker-php-ext-install pdo pdo_mysql zip intl
+
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+COPY . .
+
+RUN mkdir -p storage bootstrap/cache \
+    && chown -R laravel:laravelgroup /var/www \
+    && chmod -R 775 storage bootstrap/cache
+
+USER laravel
+
+CMD if [ -f artisan ]; then \
+      composer install && \
+      php artisan serve --host=0.0.0.0 --port=8000; \
+    else \
+      echo "Laravel ainda não instalado. Use 'docker-compose exec app composer create-project laravel/laravel .'" && tail -f /dev/null; \
+    fi
