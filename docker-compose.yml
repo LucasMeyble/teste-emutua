@@ -24,13 +24,13 @@ services:
 
   frontend:
     build:
-      context: ./frontend
+      context: ./frontend/emutua
     container_name: emutua-frontend
     working_dir: /app
     ports:
       - "3000:3000"
     volumes:
-      - ./frontend:/app
+      - ./frontend/emutua:/app
     depends_on:
       - app
     environment:
