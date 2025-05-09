@@ -28,9 +28,9 @@ return [
         'default' => [
             'dev'           => env('APP_DEBUG', false),
             'meta'          => env('DOCTRINE_METADATA', 'attributes'),
-            'connection'    => env('DB_CONNECTION', 'mysql'),
+            'connection'    => 'mysql',
             'paths'         => [
-                base_path('app/Entities')
+                base_path('app/Domain/Entities')
             ],
 
             'repository'    => Doctrine\ORM\EntityRepository::class,
