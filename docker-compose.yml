@@ -34,7 +34,8 @@ services:
     depends_on:
       - app
     environment:
-      NEXT_PUBLIC_API_URL: http://localhost:8000/api
+      NEXT_PUBLIC_API_URL: http://app:8000/api
+      NEXTAUTH_SECRET: uY3q0L9Bh6Tm2yRfF90GgJqINuhSKl1z6MZkDpXYuzg
     command: ["npm", "run", "dev"]
 
   db:
