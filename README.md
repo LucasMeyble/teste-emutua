@@ -40,7 +40,7 @@ Este projeto é uma aplicação web full-stack com backend em Laravel utilizando
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/emutua-app.git
+git clone https://github.com/LucasMeyble/teste-emutua.git
 cd emutua-app
 ```
 
