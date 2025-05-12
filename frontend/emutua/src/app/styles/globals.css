@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+dialog::backdrop {
+  background: transparent;
+}
+
+dialog[open] {
+  display: flex;
+}
